@@ -56,7 +56,8 @@
         },
         "p3": {
           "title": "Among Us for Influencers",
-          "text": "Creation of a multiplayer project similar to Among Us, with unique mechanics for streamers, in the shortest time possible."
+          "text": "Developing a multiplayer project similar to Among Us, with unique gameplay mechanics, for a streamers offline event."
+          ,"unreleased": "Unreleased"
         }
       }
     },
@@ -102,7 +103,7 @@
         "learning_ability": "Ability to Learn"
       },
       "experience": {
-        "role1": "Lead Gameplay Programmer – Indie Studio / Freelance",
+        "role1": "Lead Developer – HiTyara / Freelance",
         "date1": "2022 – Present",
         "desc1": "Built a project from scratch, target platforms – WebGL, PC. Developed a lightweight custom system (based on a small number of object types used to reconstruct all game elements) supporting a large number of on-screen objects for PC and mobile devices. Built custom tools for complex ability design. Developed a custom component system to accelerate gameplay. Implemented cloud saves. Created and iteratively improved gameplay mechanics from scratch. Collected and resolved user feedback and issues. Built a strictly structured system for data flow from mechanics to UI. Designed a custom nested attribute system. Implemented a procedural system for balance and enemy spawning. Added localization support. Handled balance calculations, mechanic descriptions, new content design and implementation.",
         
@@ -193,7 +194,8 @@
         },
         "p3": {
           "title": "Among Us для инфлюенсеров",
-          "text": "Создание мультиплеерного проекта, похожего на Among Us, с уникальными механиками для стримеров в кратчайшие сроки."
+          "text": " "
+          ,"unreleased": "Не выпущено"
         }
       }
     },
@@ -239,7 +241,7 @@
         "learning_ability": "Обучаемость"
       },
       "experience": {
-        "role1": "Ведущий программист игрового процесса – Инди-студия / Фриланс",
+        "role1": "Ведущий разработчик – HiTyara / Фриланс",
         "date1": "2022 – Настоящее время",
         "desc1": "Создание проекта с нуля, целевые платформы – WebGL, PC. Собственная легковесная система (основанная на небольшом количестве типов игровых объектов, из которых воссоздаются все элементы игры), поддерживающая большое количество объектов на экране для PC и мобильных устройств. Самописная система инструментов для проектирования сложных способностей. Кастомная система компонентов для ускорения игровых процессов. Поддержка облачных сохранений. Создание и итерационное улучшение игровых механик с нуля. Работа с отзывами и проблемами пользователей. Строго структурированная система передачи данных от механик в UI. Самописная система вложенных характеристик. Процедурная система баланса и спавна противников. Поддержка локализации. Расчет баланса, описание игровых механик, создание и проработка нового контента.",
         
