@@ -1,0 +1,1 @@
+Resume like business card of DrySprout game developer.
