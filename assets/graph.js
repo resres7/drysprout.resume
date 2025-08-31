@@ -65,6 +65,36 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseY = (e.clientY - rect.top) * scaleY;
     });
 
+    // Track touch position for mobile devices
+    document.addEventListener('touchmove', (e) => {
+        e.preventDefault(); // Prevent scrolling
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        mouseX = (touch.clientX - rect.left) * scaleX;
+        mouseY = (touch.clientY - rect.top) * scaleY;
+    });
+
+    // Handle touch start to initialize position
+    document.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        mouseX = (touch.clientX - rect.left) * scaleX;
+        mouseY = (touch.clientY - rect.top) * scaleY;
+    });
+
+    // Reset position when touch ends
+    document.addEventListener('touchend', () => {
+        // Move mouse position off-screen to stop attraction
+        mouseX = -1000;
+        mouseY = -1000;
+    });
+
     // Lerp function for smooth interpolation
     function lerp(start, end, factor) {
         return start + (end - start) * factor;
