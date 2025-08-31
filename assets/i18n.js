@@ -5,7 +5,6 @@
   // Inline fallback data removed, now using separate JSON files
   
   async function loadLocale(locale){
-    console.log('Loading locale:', locale);
     
     try {
       // First, try to find an inline JSON script with the requested locale
@@ -17,7 +16,7 @@
           currentLang = locale;
           updateLanguageButtons();
           document.documentElement.setAttribute('lang', locale);
-          console.log('Loaded from inline script');
+          
           return;
         }catch(e){
           console.warn('Failed to parse inline i18n JSON', e);
@@ -48,7 +47,7 @@
         currentLang = locale;
         updateLanguageButtons();
         document.documentElement.setAttribute('lang', locale);
-        console.log('Loaded from external file');
+        
         return;
       } catch (loadError) {
         console.warn('Load failed:', loadError);
@@ -65,7 +64,7 @@
   }
 
   function applyLocale(obj, prefix=''){
-    console.log('Applying locale with prefix:', prefix);
+    
     for(const key in obj){
       const val = obj[key];
       const path = prefix ? `${prefix}.${key}` : key;
@@ -97,7 +96,7 @@
 
   // Global function for language switching
   window.switchLanguage = function(lang) {
-    console.log('Switching to language:', lang);
+    
     loadLocale(lang);
     // Update URL without reloading page
     const url = new URL(window.location.href);
@@ -108,7 +107,6 @@
   // Auto-detect language (basic): url param `lang` or browser lang fallback
   const url = new URL(window.location.href);
   const lang = url.searchParams.get('lang') || navigator.language.split('-')[0] || 'en';
-  console.log('Initial language detected:', lang);
   
   // Wait for DOM to be ready
   if (document.readyState === 'loading') {
