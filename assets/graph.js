@@ -285,13 +285,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set canvas size
     function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        console.log('Canvas resized to', canvas.width, canvas.height);
-        generateGraph();
+        const newWidth = window.innerWidth;
+        const newHeight = window.innerHeight;
+        
+        // Only resize and regenerate if size actually changed significantly
+        if (Math.abs(canvas.width - newWidth) > 10 || Math.abs(canvas.height - newHeight) > 10) {
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+            console.log('Canvas resized to', canvas.width, canvas.height);
+            generateGraph();
+        }
     }
+    
+    // Initial resize
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    
+    // Handle window resize with debouncing to prevent excessive regeneration
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizeCanvas, 150); // Wait 150ms before resizing
+    });
+    
+    // Handle viewport changes on mobile (address bar show/hide)
+    let lastHeight = window.innerHeight;
+    function handleViewportChange() {
+        const currentHeight = window.innerHeight;
+        const heightDiff = Math.abs(currentHeight - lastHeight);
+        
+        // Only resize if height change is significant (more than 50px)
+        // This prevents minor changes from triggering expensive regeneration
+        if (heightDiff > 50) {
+            lastHeight = currentHeight;
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeCanvas, 100);
+        }
+    }
+    
+    // Listen for viewport changes (mobile browser UI changes)
+    window.addEventListener('orientationchange', () => {
+        setTimeout(handleViewportChange, 500); // Delay to let orientation settle
+    });
+    
+    // Use visualViewport if available (better mobile support)
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', handleViewportChange);
+    }
 
     function generateGraph() {
         console.log('Generating graph');
