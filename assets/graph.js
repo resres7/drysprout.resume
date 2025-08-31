@@ -67,33 +67,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Track touch position for mobile devices
     document.addEventListener('touchmove', (e) => {
-        e.preventDefault(); // Prevent scrolling
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
+        // Only prevent default if we're actively interacting with the graph
+        // Don't interfere with normal scrolling
+        if (e.touches.length === 1) {
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
 
-        mouseX = (touch.clientX - rect.left) * scaleX;
-        mouseY = (touch.clientY - rect.top) * scaleY;
-    });
+            mouseX = (touch.clientX - rect.left) * scaleX;
+            mouseY = (touch.clientY - rect.top) * scaleY;
+        }
+    }, { passive: true }); // Use passive listener to not block scrolling
 
     // Handle touch start to initialize position
     document.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
+        if (e.touches.length === 1) {
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
 
-        mouseX = (touch.clientX - rect.left) * scaleX;
-        mouseY = (touch.clientY - rect.top) * scaleY;
-    });
+            mouseX = (touch.clientX - rect.left) * scaleX;
+            mouseY = (touch.clientY - rect.top) * scaleY;
+        }
+    }, { passive: true });
 
     // Reset position when touch ends
     document.addEventListener('touchend', () => {
         // Move mouse position off-screen to stop attraction
         mouseX = -1000;
         mouseY = -1000;
-    });
+    }, { passive: true });
 
     // Lerp function for smooth interpolation
     function lerp(start, end, factor) {
