@@ -65,18 +65,35 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseY = (e.clientY - rect.top) * scaleY;
     });
 
+    let lastTouchY = 0;
+    let isScrolling = false;
+    let touchStartTime = 0;
+
     // Track touch position for mobile devices
     document.addEventListener('touchmove', (e) => {
         // Only prevent default if we're actively interacting with the graph
         // Don't interfere with normal scrolling
-        if (e.touches.length === 1) {
+        if (e.touches.length === 1 && !isScrolling) {
             const touch = e.touches[0];
+            
+            // Detect if user is scrolling (significant vertical movement)
+            const deltaY = Math.abs(touch.clientY - lastTouchY);
+            const timeSinceStart = Date.now() - touchStartTime;
+            
+            // If significant vertical movement in short time, likely scrolling
+            if (deltaY > 10 && timeSinceStart < 200) {
+                isScrolling = true;
+                return;
+            }
+            
             const rect = canvas.getBoundingClientRect();
             const scaleX = canvas.width / rect.width;
             const scaleY = canvas.height / rect.height;
 
             mouseX = (touch.clientX - rect.left) * scaleX;
             mouseY = (touch.clientY - rect.top) * scaleY;
+            
+            lastTouchY = touch.clientY;
         }
     }, { passive: true }); // Use passive listener to not block scrolling
 
@@ -84,12 +101,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
             const touch = e.touches[0];
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
+            lastTouchY = touch.clientY;
+            touchStartTime = Date.now();
+            isScrolling = false;
+            
+            // Only set mouse position if we're not at the very top of the page
+            // This prevents interference with pull-to-refresh
+            if (window.scrollY > 5) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
 
-            mouseX = (touch.clientX - rect.left) * scaleX;
-            mouseY = (touch.clientY - rect.top) * scaleY;
+                mouseX = (touch.clientX - rect.left) * scaleX;
+                mouseY = (touch.clientY - rect.top) * scaleY;
+            }
         }
     }, { passive: true });
 
@@ -98,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Move mouse position off-screen to stop attraction
         mouseX = -1000;
         mouseY = -1000;
+        isScrolling = false;
     }, { passive: true });
 
     // Lerp function for smooth interpolation
