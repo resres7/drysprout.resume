@@ -27,7 +27,7 @@
       try {
         const data = await new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
-          xhr.open('GET', `assets/i18n/${locale}.json`);
+          xhr.open('GET', `assets/i18n/${locale}.json?v=${Date.now()}`);
           xhr.onload = () => {
             if (xhr.status === 200) {
               try {

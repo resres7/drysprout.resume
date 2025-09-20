@@ -34,6 +34,10 @@
         "title": "Graphics / Technologies",
         "text": "Render pipelines (URP/HDRP), GPU profiling, batching, shader writing, VFX Graph, rendering profiling and optimization."
       },
+      "gamedesign": {
+        "title": "Game design",
+        "text": "Idea development, target audience research, hypothesis testing of mechanics (from single features to core systems), game balance, UI/UX design and layout."
+      },
       "soft": {
         "title": "Soft Skills",
         "text": "Ability to find common ground and build trust. Responsibility for results and readiness to take initiative. Active listening and understanding. Calmness and composure in stressful situations. Team collaboration and colleague support. Flexible thinking and adaptability."
@@ -86,7 +90,9 @@
     }
   },
   "content": {
-    "summary_text": "Independent / freelance game developer with 4+ years of commercial experience. Worked on small game projects, prototyping, and hyper-casual games, as well as on a large-scale project. Participated in the full development cycle — from idea to release and support of all aspects of the game, including multi-platform support. Focused on performance and workflow optimization. Optimized CPU, GPU, memory, and build size for multiple platforms. Advocate of using tools and time purposefully, without reinventing the wheel for minor features. Prioritize adaptability and learning to solve specific tasks in the fastest and most efficient way. Passionate about learning new things and sharing knowledge with the team. Actively leverage AI to accelerate workflows. Empathetic, good listener, and easily engage in both technical and design discussions.",
+    "summary_text_section1": "Game developer with over 4 years of commercial experience. I've worked on small projects, prototypes, and hyper-casual games, and also served as lead developer on a multi-platform project with unique challenges and solutions. I've been involved in the full development cycle — from the first idea to release and post-launch support, including multi-platform deployment.",
+    "summary_text_section2": "My main focus is on performance and workflow efficiency: optimizing CPU, GPU, memory, and build size for different targets. I prefer practical solutions over reinventing the wheel and aim to stay adaptable — finding the fastest and most effective way to solve each task.",
+    "summary_text_section3": "I enjoy learning new skills and sharing knowledge with others. I'm comfortable in both technical and design discussions and value clear, empathetic communication within a team.",
     "contact_intro": "Open to contract / full-time opportunities (remote). Prefer roles focused on game mechanics, tools creation, and performance optimization.",
     "back_to_top": "Back to Top ↑",
     "key_strengths": {
